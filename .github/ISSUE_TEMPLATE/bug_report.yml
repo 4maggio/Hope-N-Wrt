@@ -1,0 +1,107 @@
+name: Bug Report
+description: Melde einen Bug oder Fehler
+labels: ["bug"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Danke dass du einen Bug meldest! Bitte fülle die Informationen aus um uns zu helfen.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Problem-Beschreibung
+      description: Klar und prägnant beschreiben was nicht funktioniert
+      placeholder: Beschreibe hier dein Problem...
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Schritte zum Reproduzieren
+      description: Genaue Schritte zum Reproduzieren des Bugs
+      placeholder: |
+        1. Verbinde mit Router via SSH
+        2. Führe folgendes aus...
+        3. Sehe Fehler...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Erwartetes Verhalten
+      description: Was sollte passieren?
+      placeholder: Erwartetes Verhalten...
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Aktuelles Verhalten
+      description: Was passiert stattdessen?
+      placeholder: Aktuelles Verhalten...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: router
+    attributes:
+      label: Router-Modell
+      description: Welches Router-Modell verwendest du?
+      options:
+        - Archer MR200
+        - Archer MR300
+        - Andere / Nicht sicher
+    validations:
+      required: true
+
+  - type: input
+    id: openwrt
+    attributes:
+      label: OpenWRT-Version
+      description: Welche OpenWRT-Version läuft auf deinem Router?
+      placeholder: "z.B. 21.02.0"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: mode
+    attributes:
+      label: Router-Modus
+      description: In welchem Modus tritt der Bug auf?
+      options:
+        - Hotspot
+        - AP (lan-only)
+        - AP (lan-fallback)
+        - AP (loadbalancing)
+        - Alle Modi
+        - Nicht sicher
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Fehler-Output / Logs
+      description: Bitte relevante Logs einfügen (logread output)
+      placeholder: |
+        ```
+        logread | tail -50
+        ```
+      render: shell
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Zusätzlicher Kontext
+      description: Weitere Informationen die hilfreich sind
+      placeholder: Ergänze hier weitere Infos...
+    validations:
+      required: false

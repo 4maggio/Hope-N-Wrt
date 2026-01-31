@@ -1,0 +1,56 @@
+name: Feature Request
+description: Schlag eine neue Funktion vor
+labels: ["enhancement"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Danke dass du eine neue Funktion vorschlagst! Bitte beschreibe deine Idee klar.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Feature-Beschreibung
+      description: Beschreibe die neue Funktion
+      placeholder: Ich möchte gerne...
+    validations:
+      required: true
+
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Motivation / Use-Case
+      description: Warum ist diese Funktion wichtig?
+      placeholder: Diese Funktion wäre hilfreich um...
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Deine Lösung
+      description: Wie könnte die Funktion implementiert werden?
+      placeholder: Meine Idee wäre...
+    validations:
+      required: false
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternativen
+      description: Gibt es andere Lösungen?
+      placeholder: Alternative Ansätze...
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: Ich habe nach ähnlichen Features gesucht
+          required: true
+        - label: Ich habe die Dokumentation überprüft
+          required: false

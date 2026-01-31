@@ -1,0 +1,65 @@
+# .gitignore für Public Router Repository
+# Schließt alle sensitiven und temporären Dateien aus
+
+# === INTERNAL DOCUMENTATION (nicht für öffentliche Repo) ===
+FINAL_STATUS.md
+SETUP_SUMMARY.md
+GITHUB_CHECKLIST.md
+
+# === Sensitive Daten ===
+# Backup und Konfiguration mit echten Werten
+*.backup
+*.bak
+backup-info-*.txt
+luci_backup_files/
+luci-uploads/
+
+# === Temporäre Dateien ===
+*.log
+*.tmp
+*.swp
+*.swo
+*~
+
+# === OS-spezifisch ===
+.DS_Store
+Thumbs.db
+System Volume Information/
+lost+found/
+
+# === Nur Templates verwenden ===
+!**.template
+
+# === Backups und Archive ===
+*.tar
+*.tar.gz
+*.zip
+*.tar.bz2
+
+# === IDE und Editor ===
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# === SSH und Sicherheit ===
+.ssh/
+private_key
+id_rsa
+id_ed25519
+*.pem
+
+# === Benutzer-Secrets ===
+secrets.json
+secrets.yaml
+.env.secrets
+credentials.json
+.env
+.env.local
+.env.*.local
+
+# === Lokale Tests und Experimente ===
+/test-local/
+/local/
+sandbox/
+playground/

@@ -1,0 +1,59 @@
+# TEMPLATE - Wireless Configuration
+# Diese Datei zeigt die wichtigsten Konfigurationspunkte für WLAN
+# 
+# WICHTIG: Ersetze folgende Platzhalter mit deinen Werten:
+#  - MAIN_SSID         : Hauptnetzwerk-Name (z.B. "MyRouter")
+#  - MAIN_PASSWORD     : Passwort für Hauptnetzwerk (Min. 8 Zeichen)
+#  - GUEST_SSID        : Gast-Netzwerk-Name (z.B. "MyRouter-Guest")
+#  - GUEST_PASSWORD    : Passwort für Gast-Netzwerk
+#  - WWAN_SSID         : Zielserver-SSID für Hotspot (z.B. "iPhone")
+#  - WWAN_PASSWORD     : Passwort für Verbindung zum Zielserver
+#
+# Dieser Router hat 3 APs (Access Points):
+#  - wifinet0 (phy0-ap0): 2.4GHz Hotspot-Client (nur im Hotspot-Modus)
+#  - wifinet1 (phy0-ap1): 2.4GHz Hauptnetzwerk (SSID_0)
+#  - wifinet2 (phy0-ap2): 5GHz Gast-Netzwerk (SSID_Guest)
+#
+
+config device 'radio0'
+    option type 'mac80211'
+    option channel '11'
+    option band '2g'
+    option hwmode '11g'
+    option disabled '0'
+
+# === WIFINET0: Hotspot-Client (2.4GHz) ===
+# Diese SSID verbindet sich zu einem externen WLAN (z.B. iPhone)
+config wifi-iface 'wifinet0'
+    option device 'radio0'
+    option network 'wwan'
+    option mode 'sta'
+    option ssid 'WWAN_SSID'         # ERSETZEN: Name des Netzwerks zu dem verbunden wird
+    option key 'WWAN_PASSWORD'      # ERSETZEN: Passwort
+    option encryption 'psk2'
+    option disabled '0'
+    option isolate '0'
+
+# === WIFINET1: Hauptnetzwerk AP (2.4GHz) ===
+# Das Standard-WLAN für Clients
+config wifi-iface 'wifinet1'
+    option device 'radio0'
+    option network 'lan'
+    option mode 'ap'
+    option ssid 'MAIN_SSID'         # ERSETZEN: Dein WLAN-Name
+    option key 'MAIN_PASSWORD'      # ERSETZEN: Dein WLAN-Passwort (mind. 8 Zeichen)
+    option encryption 'psk2'
+    option isolate '0'
+    option disabled '0'
+
+# === WIFINET2: Gast-Netzwerk AP (5GHz) ===
+# Separates Netzwerk für Gäste
+config wifi-iface 'wifinet2'
+    option device 'radio0'
+    option network 'guest'
+    option mode 'ap'
+    option ssid 'GUEST_SSID'        # ERSETZEN: Gast-SSID
+    option key 'GUEST_PASSWORD'     # ERSETZEN: Gast-Passwort
+    option encryption 'psk2'
+    option isolate '1'              # Isolieren für Sicherheit
+    option disabled '0'

@@ -1,0 +1,50 @@
+# TEMPLATE - Network Configuration
+# Diese Datei zeigt die wichtigsten Netzwerk-Konfigurationspunkte
+# Ersetze Platzhalter wie beschrieben
+#
+
+# === LAN-Bridge ===
+config device 'br_lan'
+    option name 'br-lan'
+    option type 'bridge'
+    # Ports: eth1=LAN, wlan-Interfaces werden separat configured
+    option ports 'eth1'
+
+# === LAN Interface ===
+config interface 'lan'
+    option device 'br_lan'
+    option proto 'static'
+    option ipaddr '192.168.1.1'     # Router-IP im LAN (Gast-Netzwerk)
+    option netmask '255.255.255.0'
+
+# === WAN Interface (für AP-Modus: eth0, für Hotspot: wwan) ===
+config interface 'wan'
+    option device 'eth0'            # AP-Modus
+    option proto 'dhcp'
+    # Im Hotspot-Modus: device='wwan', wWAN interface wird konfiguriert
+
+# === WWAN Interface (für Hotspot-Modus) ===
+config interface 'wwan'
+    option proto 'dhcp'
+    option device 'wlan0'           # wird konfiguriert basierend auf AP
+
+# === Gast-Netzwerk (Guest) ===
+config interface 'guest'
+    option type 'bridge'
+    option proto 'static'
+    option ipaddr '192.168.2.1'     # Separates Subnetz für Gäste
+    option netmask '255.255.255.0'
+    option device 'wlan1'
+
+# === DNS/DHCP ===
+config dnsmasq
+    option domainneeded '1'
+    option boguspriv '1'
+    option localise_queries '1'
+    option expandhosts '1'
+    option authoritative '1'
+    option readethersfile '1'
+    list server '1.1.1.1'           # Cloudflare DNS
+    list server '8.8.8.8'           # Google DNS
+    option leasefile '/tmp/dhcp.leases'
+    option resolvfile '/tmp/resolv.conf.d/resolv.conf.auto'

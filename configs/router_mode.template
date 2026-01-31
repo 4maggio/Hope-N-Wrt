@@ -1,0 +1,11 @@
+config settings 'config'
+	# Router-Modus: 'hotspot' oder 'ap'
+	# - hotspot: Internet über 5G-Verbindung (z.B. zu iPhone)
+	# - ap: Internet über LAN-Kabel
+	option router_mode 'hotspot'
+	
+	# AP-Submode (nur relevant wenn router_mode='ap'):
+	# - lan-only: Nur LAN, 5G deaktiviert
+	# - lan-fallback: LAN primär, 5G als Fallback (mwan3)
+	# - loadbalancing: LAN und 5G gleichzeitig (mwan3)
+	option ap_submode 'lan-only'
